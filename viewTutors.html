@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Tutors</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+      }
+      .container {
+        width: 80%;
+        margin: 50px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .error {
+        color: red;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>All Tutors</h1>
+      <table id="tutorsTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Subject</th>
+            <th>Contact</th>
+            <th>Salary</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Tutors will be dynamically added here -->
+        </tbody>
+      </table>
+      <p class="error" id="error"></p>
+    </div>
+
+    <script>
+      async function fetchTutors() {
+        try {
+          const session = document.cookie.slice(8);
+          const response = await fetch(
+            `http://localhost:3000/api/tutors/${session}`
+          );
+          if (!response.ok) {
+            throw new Error("Failed to fetch tutors");
+          }
+          const tutors = await response.json();
+          const tableBody = document.querySelector("#tutorsTable tbody");
+          tutors.forEach((tutor) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+            <td>${tutor.name}</td>
+            <td>${tutor.email}</td>
+            <td>${tutor.department}</td>
+            <td>${tutor.subject}</td>
+            <td>${tutor.contact}</td>
+            <td>${tutor.salary}</td>
+          `;
+            tableBody.appendChild(row);
+          });
+        } catch (error) {
+          document.getElementById("error").textContent = error.message;
+        }
+      }
+
+      // Fetch tutors when the page loads
+      fetchTutors();
+    </script>
+  </body>
+</html>

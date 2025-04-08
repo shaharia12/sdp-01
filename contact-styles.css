@@ -1,0 +1,195 @@
+/* General Styles */
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+header {
+  background-color: #007bff;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  height: 40px;
+  margin-top: 50px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+header p {
+  font-size: 1rem;
+}
+
+/* Main Sections */
+main {
+  padding: 20px;
+}
+
+/* Contact Form */
+.contact-form {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.contact-form h2 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #007bff;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+/* Contact Info */
+.contact-info {
+  margin-bottom: 20px;
+}
+
+.contact-info h2 {
+  margin-bottom: 10px;
+  color: #007bff;
+}
+
+.contact-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-info li {
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+/* Map */
+.map h2 {
+  margin-bottom: 10px;
+  color: #007bff;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  background: #333;
+  color: white;
+  padding: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    font-size: 90%;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .contact-form,
+  .contact-info,
+  .map {
+    margin-bottom: 15px;
+  }
+}
+
+.navbar {
+  height: 60px;
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  background-image: url("tutor.jpeg");
+}
+
+.navbar-title {
+  text-align: center;
+  padding-top: 10px;
+  color: #f2f2f2;
+  background-image: url("tutor.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+h1 {
+  text-align: center;
+}
+
+nav {
+  list-style-type: disc;
+  padding-top: 10px;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+  border-style: solid;
+  border-width: 1px;
+  background-color: aqua;
+  border-color: #4caf50;
+  border-radius: 50px;
+  opacity: 1;
+}
+
+nav ul li:hover {
+  display: inline;
+  margin-right: 40px;
+  border-style: solid;
+  border-width: 3px;
+  background-color: red;
+  border-color: blueviolet;
+  border-radius: 50px;
+  opacity: 1;
+}
+
+nav ul li a {
+  color: black;
+  padding: 10px;
+  text-decoration: none;
+}

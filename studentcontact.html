@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="contact-styles.css" />
+    <title>Contact Us</title>
+  </head>
+  <body>
+    <h1 class="navbar-title">Welcome to Tutor Management System</h1>
+    <div class="navbar">
+      <nav class="navigation">
+        <ul>
+          <li><a href="studenthome.html">Home</a></li>
+          <li><a href="studentabout.html">About</a></li>
+          <li><a href="studentsearch.html">Search Tutor</a></li>
+          <li><a href="studentprofile.html">Profile</a></li>
+          <li><a href="studentcontact.html">Contact</a></li>
+          <li><a href="login.html">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <header>
+      <h1>Contact Us As A Student</h1>
+    </header>
+
+    <main>
+      <section class="contact-form">
+        <h2>Get in Touch</h2>
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Write your message here"
+              rows="5"
+              required
+            ></textarea>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+        <p id="responseMessage"></p>
+      </section>
+
+      <section class="contact-info">
+        <h2>Contact Information</h2>
+        <ul>
+          <li><strong>Address:</strong> 1234 Elm Street, Springfield, USA</li>
+          <li><strong>Phone:</strong> +1 (555) 123-4567</li>
+          <li><strong>Email:</strong> contact@yourwebsite.com</li>
+        </ul>
+      </section>
+
+      <section class="map">
+        <h2>Find Us Here</h2>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243647.33840831727!2d-74.0059412!3d40.712775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316c75040d%3A0x7c429a8f94b7eebd!2sSpringfield!5e0!3m2!1sen!2sus!4v1234567890"
+          width="100%"
+          height="300"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Tutor Management System. All rights reserved.</p>
+      <p>&copy;developed by Md.shaharia Hasan.</p>
+    </footer>
+    <script>
+      // JavaScript to handle form submission
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault(); // Prevent default form submission
+
+          const email = document.getElementById("email").value;
+          const message = document.getElementById("message").value;
+
+          try {
+            const response = await fetch("http://localhost:3000/api/contact", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ email, message }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+              alert(data.message);
+            } else {
+              alert(data.error);
+            }
+          } catch (error) {
+            document.getElementById("responseMessage").textContent =
+              "Failed to submit the form. Please try again.";
+            document.getElementById("responseMessage").style.color = "red";
+          }
+        });
+    </script>
+  </body>
+</html>

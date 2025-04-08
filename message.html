@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Messages</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+        transition: background 0.3s ease;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: background 0.3s ease;
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      .search-box {
+        width: 97%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background: #007bff;
+        color: white;
+      }
+
+      tr:hover {
+        background: #f1f1f1;
+      }
+
+      .dark-mode {
+        background-color: #333;
+        color: #fff;
+      }
+
+      .dark-mode .container {
+        background-color: #444;
+        color: #fff;
+      }
+
+      .dark-mode th {
+        background: #0056b3;
+      }
+
+      .dark-mode tr:hover {
+        background: #555;
+      }
+
+      .toggle-dark {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="toggle-dark" onclick="toggleDarkMode()">🌙 Mode</button>
+
+    <div class="container">
+      <h2>Admin Messages</h2>
+      <input
+        type="text"
+        class="search-box"
+        id="search"
+        placeholder="Search messages..."
+        onkeyup="filterMessages()"
+      />
+
+      <table>
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Message</th>
+          </tr>
+        </thead>
+        <tbody id="messageTable">
+          <!-- Messages will be dynamically inserted here -->
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", fetchMessages);
+
+      async function fetchMessages() {
+        try {
+          const session = document.cookie.slice(8);
+          const response = await fetch(
+            `http://localhost:3000/api/contact/${session}`
+          );
+          const messages = await response.json();
+          const messageTable = document.getElementById("messageTable");
+          messageTable.innerHTML = "";
+
+          messages.forEach((msg) => {
+            const row = `<tr>
+                        <td>${msg.email}</td>
+                        <td>${msg.message}</td>
+                    </tr>`;
+            messageTable.innerHTML += row;
+          });
+        } catch (error) {
+          console.error("Error fetching messages:", error);
+        }
+      }
+
+      function filterMessages() {
+        const searchInput = document
+          .getElementById("search")
+          .value.toLowerCase();
+        const rows = document.querySelectorAll("#messageTable tr");
+
+        rows.forEach((row) => {
+          const text = row.textContent.toLowerCase();
+          row.style.display = text.includes(searchInput) ? "" : "none";
+        });
+      }
+
+      function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+      }
+    </script>
+  </body>
+</html>

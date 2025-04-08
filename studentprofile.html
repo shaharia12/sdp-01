@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Profile</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      p {
+        font-size: 16px;
+        color: #555;
+        margin: 10px 0;
+      }
+      .error {
+        color: red;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="navbar-title">Welcome to Tutor Management System</h1>
+    <div class="navbar">
+      <nav class="navigation">
+        <ul>
+          <li><a href="studenthome.html">Home</a></li>
+          <li><a href="studentabout.html">About</a></li>
+          <li><a href="studentsearch.html">Search Tutor</a></li>
+          <li><a href="studentprofile.html">Profile</a></li>
+          <li><a href="studentcontact.html">Contact</a></li>
+          <li><a href="login.html">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container">
+      <h1>Student Profile</h1>
+      <div id="profile"></div>
+      <p id="error" class="error"></p>
+    </div>
+
+    <script>
+      const sessionId = document.cookie.slice(8);
+
+      const apiUrl = `http://localhost:3000/api/student/profile/${sessionId}`;
+
+      async function fetchStudentProfile() {
+        try {
+          const response = await fetch(apiUrl);
+          if (response.ok) {
+            const student = await response.json();
+
+            displayStudentProfile(student);
+          } else {
+            const errorData = await response.json();
+            document.getElementById("error").textContent =
+              errorData.error || "Failed to load profile.";
+          }
+        } catch (error) {
+          document.getElementById("error").textContent =
+            "An error occurred while fetching the profile.";
+          console.error(error);
+        }
+      }
+
+      function displayStudentProfile(student) {
+        const profileDiv = document.getElementById("profile");
+        profileDiv.innerHTML = `
+                <p><strong>First Name:</strong> ${student.first_name}</p>
+                <p><strong>Last Name:</strong> ${student.last_name}</p>
+                <p><strong>Email:</strong> ${student.email}</p>
+                <p><strong>Contact:</strong> ${student.contact}</p>
+            `;
+      }
+
+      fetchStudentProfile();
+    </script>
+  </body>
+</html>

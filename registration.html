@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="registration.css" />
+    <title>Registration</title>
+  </head>
+  <body>
+    <h1 class="navbar-title">Welcome to Tutor Management System</h1>
+    <div class="navbar">
+      <nav class="navigation">
+        <ul>
+          <li><a href="registration.html">Registration</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <header>
+      <h1>Registration</h1>
+      <p>Select your role and fill out the form!</p>
+    </header>
+
+    <main class="registration-container">
+      <label for="role-select">Choose your role:</label>
+      <select id="role-select" onchange="toggleForms()">
+        <option value="">--Select Role--</option>
+        <option value="student">Student</option>
+        <option value="tutor">Tutor</option>
+      </select>
+
+      <!-- Student Registration Form -->
+      <div id="student-form" style="display: none">
+        <h2>Student Registration</h2>
+        <div class="form-group">
+          <label for="student-first-name">First Name</label>
+          <input
+            type="text"
+            id="student-first-name"
+            placeholder="Enter your first name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="student-last-name">Last Name</label>
+          <input
+            type="text"
+            id="student-last-name"
+            placeholder="Enter your last name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="student-email">Email</label>
+          <input
+            type="email"
+            id="student-email"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="student-password">Password</label>
+          <input
+            type="password"
+            id="student-password"
+            placeholder="Create a password"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="student-contact">Contact Number</label>
+          <input
+            type="tel"
+            id="student-contact"
+            placeholder="Enter your contact number"
+            required
+          />
+        </div>
+        <button id="student-button">Register as Student</button>
+      </div>
+
+      <!-- Tutor Registration Form -->
+      <div id="tutor-form" style="display: none">
+        <h2>Tutor Registration</h2>
+        <div class="form-group">
+          <label for="tutor-name">Name</label>
+          <input
+            type="text"
+            id="tutor-name"
+            placeholder="Enter your name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="tutor-email">Email</label>
+          <input
+            type="email"
+            id="tutor-email"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="tutor-password">Password</label>
+          <input
+            type="password"
+            id="tutor-password"
+            placeholder="Create a password"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="tutor-department">Department</label>
+          <input
+            type="text"
+            id="tutor-department"
+            placeholder="Enter your department"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="tutor-specialized">Specialized Subject</label>
+          <select id="tutor-specialized" required>
+            <option value="" disabled selected>Select a subject</option>
+            <option value="mathematics">Mathematics</option>
+            <option value="physics">Physics</option>
+            <option value="chemistry">Chemistry</option>
+            <option value="biology">Biology</option>
+            <option value="bangla">Bangla</option>
+            <option value="english">English</option>
+            <option value="ict">ICT</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="tutor-contact">Contact</label>
+          <input
+            type="tel"
+            id="tutor-contact"
+            placeholder="Enter your contact number"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="tutor-salary">Salary</label>
+          <input
+            type="number"
+            id="tutor-salary"
+            placeholder="Enter your salary per month"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="tutor-gender">Gender</label>
+          <select id="tutor-gender" required>
+            <option value="">--Select Gender--</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <button id="tutor-button">Register as Tutor</button>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Tutor Management System. All rights reserved.</p>
+      <p>Developed by Md. Shaharia Hasan.</p>
+    </footer>
+
+    <script src="registration.js"></script>
+  </body>
+</html>

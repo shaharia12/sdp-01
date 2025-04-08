@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Students</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        padding: 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f4f4f4;
+      }
+      .loading {
+        text-align: center;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>List of Students</h1>
+    <div class="loading">Loading students...</div>
+    <table id="studentsTable" style="display: none">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Contact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Rows will be populated dynamically -->
+      </tbody>
+    </table>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        const loadingMessage = document.querySelector(".loading");
+        const table = document.getElementById("studentsTable");
+        const tbody = table.querySelector("tbody");
+
+        try {
+          const session = document.cookie.slice(8);
+          const response = await fetch(
+            `http://localhost:3000/api/users/${session}`
+          );
+          if (!response.ok) {
+            throw new Error("Failed to fetch students");
+          }
+
+          const data = await response.json();
+          const students = data.filter((user) =>
+            user.hasOwnProperty("first_name")
+          );
+
+          if (students.length === 0) {
+            loadingMessage.textContent = "No students found.";
+            return;
+          }
+
+          students.forEach((student) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+            <td>${student.first_name}</td>
+            <td>${student.last_name}</td>
+            <td>${student.email}</td>
+            <td>${student.contact}</td>
+          `;
+            tbody.appendChild(row);
+          });
+
+          loadingMessage.style.display = "none";
+          table.style.display = "table";
+        } catch (error) {
+          loadingMessage.textContent = error.message;
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="search.css" />
+    <title>Search Tutor</title>
+  </head>
+  <body>
+    <h1 class="navbar-title">Welcome to Tutor Management System</h1>
+    <div class="navbar">
+      <nav class="navigation">
+        <ul>
+          <li><a href="tutorhome.html">Home</a></li>
+          <li><a href="tutorabout.html">About</a></li>
+          <li><a href="tutorsearch.html">Search Tutor</a></li>
+          <li><a href="tutorprofile.html">Profile</a></li>
+          <li><a href="tutorcontact.html">Contact</a></li>
+          <li><a href="login.html">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <header>
+      <h1>Search for a Tutor</h1>
+      <p>Select the subject you need help with and your desired salary:</p>
+    </header>
+
+    <main class="search-container">
+      <!-- Subject Selection -->
+      <label for="subject-select">Choose a subject:</label>
+      <div class="form-group">
+        <select id="subject-select" name="subject" required>
+          <option value="" disabled selected>Select a subject</option>
+          <option value="mathematics">Mathematics</option>
+          <option value="physics">Physics</option>
+          <option value="chemistry">Chemistry</option>
+          <option value="biology">Biology</option>
+          <option value="bangla">Bangla</option>
+          <option value="english">English</option>
+          <option value="ict">ICT</option>
+          <option value="mathematics">Mathematics,Physics</option>
+          <option value="physics">Physics,ICT</option>
+          <option value="chemistry">Chemistry,Biology</option>
+          <option value="biology">Biology,Bangla</option>
+          <option value="bangla">Bangla,English</option>
+          <option value="english">English,ICT</option>
+          <option value="ict">Mathematics,ICT</option>
+        </select>
+      </div>
+
+      <!-- Salary Input -->
+      <label for="salary-input">Desired Salary:</label>
+      <div class="form-group">
+        <input
+          type="number"
+          id="salary-input"
+          name="salary"
+          placeholder="Enter maximum salary"
+          required
+        />
+      </div>
+      <!--tutor gender input-->
+
+      <div class="form-group">
+        <label for="tutor-gender">Gender</label>
+        <select id="tutor-gender" required>
+          <option value="">--Select Gender--</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+
+      <!-- Search Button -->
+      <button id="submit-button" type="button">Search</button>
+
+      <!-- Tutor List Display -->
+      <div id="tutor-list">
+        <!-- Tutor search results will be displayed here -->
+      </div>
+
+      <!-- Registration Link -->
+      <p class="login-link">
+        Want to become a tutor? <a href="registration.html">Register here</a>.
+      </p>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Tutor Management System. All rights reserved.</p>
+      <p>&copy; developed by Md.shaharia Hasan.</p>
+    </footer>
+
+    <!-- JavaScript to filter tutors -->
+    <script src="tutorsearch.js"></script>
+  </body>
+</html>

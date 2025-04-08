@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="login.css" />
+    <title>Login</title>
+  </head>
+  <body>
+    <h1 class="navbar-title">Welcome to Tutor Management System</h1>
+    <div class="navbar">
+      <nav class="navigation">
+        <ul>
+          <li><a href="registration.html">Registration</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <header>
+      <h1>Login</h1>
+      <p>Select your role and fill out the form!</p>
+    </header>
+
+    <main class="login-container">
+      <label for="role-select">Choose your role:</label>
+      <select id="role-select" onchange="toggleForms()">
+        <option value="">--Select Role--</option>
+        <option value="student">Student</option>
+        <option value="tutor">Tutor</option>
+      </select>
+
+      <!-- Student Login Form -->
+      <form
+        id="student-form"
+        class="login-form"
+        action="javascript:void(0);"
+        method="POST"
+        style="display: none"
+        onsubmit="studentLogin()"
+      >
+        <h2>Student Login</h2>
+        <div class="form-group">
+          <label for="student-email">Email</label>
+          <input
+            type="email"
+            id="student-email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="student-password">Password</label>
+          <input
+            type="password"
+            id="student-password"
+            name="password"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+        <div class="form-actions">
+          <button type="submit">Login as Student</button>
+        </div>
+        <p class="register-link">
+          Don't have an account? <a href="registration.html">Register here</a>.
+        </p>
+      </form>
+
+      <!-- Tutor Login Form -->
+      <form
+        id="tutor-form"
+        class="login-form"
+        action="javascript:void(0);"
+        method="POST"
+        style="display: none"
+        onsubmit="tutorLogin()"
+      >
+        <h2>Tutor Login</h2>
+        <div class="form-group">
+          <label for="tutor-email">Email</label>
+          <input
+            type="email"
+            id="tutor-email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="tutor-password">Password</label>
+          <input
+            type="password"
+            id="tutor-password"
+            name="password"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+        <div class="form-actions">
+          <button type="submit">Login as Tutor</button>
+        </div>
+        <p class="register-link">
+          Don't have an account? <a href="registration.html">Register here</a>.
+        </p>
+      </form>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Tutor Management System. All rights reserved.</p>
+      <p>&copy; Developed by Md. Shaharia Hasan.</p>
+    </footer>
+
+    <script src="login.js"></script>
+  </body>
+</html>

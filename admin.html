@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="admin-styles.css" />
+    <title>Admin Panel</title>
+  </head>
+  <body>
+    <h1 class="navbar-title">Welcome to Tutor Management System</h1>
+    <div class="navbar">
+      <nav class="navigation">
+        <ul>
+          <li><a href="message.html">Message</a></li>
+          <li><a href="adminLogin.html">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <header>
+      <h1>Admin Dashboard</h1>
+      <p>Manage users, tutors, and system settings efficiently.</p>
+    </header>
+
+    <main>
+      <section class="content">
+        <div id="overview" class="dashboard-section">
+          <h2>Overview</h2>
+          <div class="stats">
+            <div class="stat">
+              <h3>Users</h3>
+              <p id="user-count">Loading...</p>
+            </div>
+            <div class="stat">
+              <h3>Tutors</h3>
+              <p id="tutor-count">Loading...</p>
+            </div>
+            <div class="stat">
+              <h3>Students</h3>
+              <p id="student-count">Loading....</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="manage-users" class="dashboard-section">
+          <h2>View All Students</h2>
+          <p>View all students of the tutor management system</p>
+          <a href="viewStudents.html"> <button>Click Me!</button></a>
+        </div>
+
+        <div id="manage-tutors" class="dashboard-section">
+          <h2>View All Tutors</h2>
+          <p>View all tutors of the tutor management system</p>
+          <a href="viewTutors.html"> <button>Click Me!</button></a>
+        </div>
+
+        <div id="reports" class="dashboard-section">
+          <h2>Manage All Students</h2>
+          <p>Update students or delete any students</p>
+          <a href="manageStudents.html"> <button>Click Me!</button></a>
+        </div>
+
+        <div id="settings" class="dashboard-section">
+          <h2>Manage All Tutors</h2>
+          <p>Update tutors or delete any tutors</p>
+          <a href="manageTutors.html"> <button>Click Me!</button></a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Tutor Management System. All rights reserved.</p>
+      <p>&copy; developed by Md.shaharia Hasan.</p>
+    </footer>
+
+    <script>
+      //count er jonno script code
+      async function fetchStats() {
+        try {
+          const cookie = document.cookie.slice(8);
+          const response = await fetch(
+            `http://localhost:3000/api/users/count/${cookie}`
+          );
+          if (!response.ok) throw new Error("Failed to fetch stats");
+          const data = await response.json();
+
+          document.getElementById("user-count").textContent = data.totalCount;
+          document.getElementById("tutor-count").textContent = data.tutorCount;
+          document.getElementById("student-count").textContent =
+            data.studentCount;
+        } catch (error) {
+          console.error("Error:", error);
+          document.getElementById("user-count").textContent = "Error";
+          document.getElementById("tutor-count").textContent = "Error";
+          document.getElementById("student-count").textContent = "Error";
+        }
+      }
+
+      // Call fetchStats when the page loads
+      document.addEventListener("DOMContentLoaded", fetchStats);
+
+      let viewStudentsButton = document.getElementById("view-students");
+      let viewTutorsButton = document.getElementById("view-tutors");
+      let manageStudentsButton = document.getElementById("manage-students");
+      let manageTutorsButton = document.getElementById("manage-tutor");
+      viewStudentsButton.addEventListener("click", () => {
+        window.location = "http://127.0.0.1:5500/sdp2/TT/viewStudents.html";
+      });
+      viewTutorsButton.addEventListener("click", () => {
+        window.location = "http://127.0.0.1:5500/sdp2/TT/viewTutors.html";
+      });
+      manageStudentsButton.addEventListener("click", () => {
+        window.location = "http://127.0.0.1:5500/sdp2/TT/manageStudents.html";
+      });
+      manageTutorsButton.addEventListener("click", () => {
+        window.location = "http://127.0.0.1:5500/sdp2/TT/manageTutors.html";
+      });
+    </script>
+  </body>
+</html>
